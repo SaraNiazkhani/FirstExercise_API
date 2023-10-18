@@ -1,13 +1,19 @@
 ﻿using FirstExercise_API.Models;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using RestSharp;
+using System.Text;
+
+
 namespace FirstExercise_API.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
     public class ValuesController : ControllerBase
-    { 
-
+    {
+        
+       
+          
             [HttpGet]
             public IActionResult GetUserInfo(string firstName, string lastName)
             {
@@ -19,15 +25,25 @@ namespace FirstExercise_API.Controllers
                 person.FullName = ($"{firstName} {lastName}");
                 person.Address = address;
                 person.Age = age;
+            person.datetime = default;
+            LoginHistory.people=new List<Person>();
+            LoginHistory.people.Add(person);
                 return Ok(person);
 
             }
+  
         [HttpGet]
-        public IActionResult GetHistory()
-        {
-            return Ok();
+        public IActionResult GetHistor()
+        { foreach (Person person in LoginHistory.people) 
+            {
+                person.datetime = DateTime.Now;
+                return Ok(person);
+               }
+                return Ok();
         }
 
+       
         }
     }
+    
 
