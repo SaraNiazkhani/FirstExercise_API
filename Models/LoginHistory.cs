@@ -1,9 +1,13 @@
 ﻿namespace FirstExercise_API.Models
 {
-    public static class LoginHistory
+    public  class LoginHistory
     {
+        public LoginHistory()
+        {
+            people = new List<Person>();
+        }
 
-        public static List<Person> people { get; set; }
+        public  List<Person> people { get; set; }
 
     }
 }
